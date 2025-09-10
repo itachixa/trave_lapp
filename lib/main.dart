@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'loding.dart';
 import 'Home.dart';
 import 'map.dart';
 import 'profil.dart';
@@ -19,7 +19,7 @@ class TravelApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      home: const LoadingScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -8,192 +8,224 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, String>> destinations = [
-    {
-      'name': 'Paris',
-      'country': 'France',
-      'image': '🏛️',
-      'description': 'City of Light'
-    },
-    {
-      'name': 'Tokyo',
-      'country': 'Japan',
-      'image': '🏯',
-      'description': 'Modern meets traditional'
-    },
-    {
-      'name': 'New York',
-      'country': 'USA',
-      'image': '🗽',
-      'description': 'The Big Apple'
-    },
-    {
-      'name': 'Bali',
-      'country': 'Indonesia',
-      'image': '🏝️',
-      'description': 'Tropical paradise'
-    },
-    {
-      'name': 'Rome',
-      'country': 'Italy',
-      'image': '🏛️',
-      'description': 'Eternal City'
-    },
-    {
-      'name': 'Dubai',
-      'country': 'UAE',
-      'image': '🏙️',
-      'description': 'City of Gold'
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Travel Destinations'),
-        backgroundColor: Colors.blue,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // Search functionality (not implemented yet)
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {
-              // Filter functionality (not implemented yet)
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Search destinations...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                filled: true,
-                fillColor: Colors.grey[100],
-              ),
-            ),
-          ),
-
-          // Popular destinations
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Popular Destinations',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-
-          // Destinations grid
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16.0),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0,
-                childAspectRatio: 0.8,
-              ),
-              itemCount: destinations.length,
-              itemBuilder: (context, index) {
-                final destination = destinations[index];
-                return Card(
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+      backgroundColor: const Color.fromARGB(255, 226, 218, 218),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// Header
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      const CircleAvatar(
+                        backgroundImage: AssetImage("assets/user.png"),
+                        radius: 24,
+                      ),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "WELCOME BACK",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "Natasha Kasim",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  child: InkWell(
-                    onTap: () {
-                      // Navigate to destination details (not implemented yet)
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Selected ${destination['name']}'),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.search, size: 28),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              /// Country & Location
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        "India",
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                    borderRadius: BorderRadius.circular(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[100],
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                destination['image']!,
-                                style: const TextStyle(fontSize: 40),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  destination['name']!,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  destination['country']!,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  destination['description']!,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
+                      Icon(Icons.arrow_drop_down, size: 28),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Icon(Icons.location_on_outlined, color: Colors.grey),
+                      Text(
+                        "India, Chennai",
+                        style: TextStyle(color: Colors.grey, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              /// Horizontal scroll cities
+              SizedBox(
+                height: 80,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    _buildCityCard("Mumbai", "assets/mumbai.png"),
+                    _buildCityCard("Chennai", "assets/chennai.png"),
+                    _buildCityCard("Surat", "assets/surat.png"),
+                    _buildCityCard("Pune", "assets/pune.png"),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// Big City Card (Mumbai)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      "assets/mumbai.png",
+                      height: 250,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                );
-              },
+                    Positioned(
+                      top: 12,
+                      right: 12,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.black45,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Text(
+                          "21.7 °C",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 20,
+                      left: 16,
+                      right: 16,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Mumbai",
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            "The seven islands that constitute Mumbai were originally home to communities...",
+                            style: TextStyle(color: Colors.white70, fontSize: 12),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 12,
+                                backgroundImage: AssetImage("assets/user.png"),
+                              ),
+                              const SizedBox(width: 4),
+                              const CircleAvatar(
+                                radius: 12,
+                                backgroundImage: AssetImage("assets/user.png"),
+                              ),
+                              const SizedBox(width: 4),
+                              const CircleAvatar(
+                                radius: 12,
+                                backgroundImage: AssetImage("assets/user.png"),
+                              ),
+                              const SizedBox(width: 6),
+                              const Text(
+                                "+56",
+                                style: TextStyle(color: Colors.white, fontSize: 12),
+                              ),
+                              const Spacer(),
+                              const Icon(Icons.people, color: Colors.white70, size: 18),
+                              const SizedBox(width: 4),
+                              const Text(
+                                "12,442,373",
+                                style: TextStyle(color: Colors.white, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              /// Section Photoshoot
+              const Text(
+                "Photoshoot places",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Let's figure out how much I spent on this trip of money and time, and then the story begins.",
+                style: TextStyle(color: Colors.grey, fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCityCard(String title, String imagePath) {
+    return Container(
+      width: 100,
+      margin: const EdgeInsets.only(right: 12),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              imagePath,
+              width: 100,
+              height: 60,
+              fit: BoxFit.cover,
             ),
           ),
+          const SizedBox(height: 4),
+          Text(title, style: const TextStyle(fontSize: 14)),
         ],
       ),
     );

@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Colors.blue, Colors.lightBlueAccent],
+            colors: [Color.fromARGB(255, 228, 235, 241), Color.fromARGB(255, 168, 180, 185)],
           ),
         ),
         child: Center(
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Travel App',
+                  'Travel_India',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: ElevatedButton(
                             onPressed: _isLoading ? null : _login,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: const Color.fromARGB(255, 12, 12, 12),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: const Text(
                             'Don\'t have an account? Sign up',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Color.fromARGB(255, 15, 15, 15)),
                           ),
                         ),
                       ],
